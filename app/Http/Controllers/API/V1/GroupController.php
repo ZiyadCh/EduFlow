@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\V1;
 
-use App\Models\Teacher;
+use App\Http\Controllers\Controller;
+use App\Models\Group;
 use Illuminate\Http\Request;
 
-class TeacherController extends Controller
+class GroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,12 +22,12 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
         //
-
     }
+
     /**
      * Display the specified resource.
      */
-    public function show(Teacher $teacher)
+    public function show(Group $group)
     {
         //
     }
@@ -34,7 +35,7 @@ class TeacherController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Teacher $teacher)
+    public function update(Request $request, Group $group)
     {
         //
     }
@@ -42,7 +43,7 @@ class TeacherController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Teacher $teacher)
+    public function destroy(Group $group)
     {
         //
     }
