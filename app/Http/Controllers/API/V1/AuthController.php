@@ -2,48 +2,64 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function register(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'role' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $user = User::create([
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'role' => $request->role,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $token = auth('api')->login($user);
+
+        return $this->respondWithToken($token);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function login(Request $request)
     {
-        //
+        $credentials = $request->only('email', 'password');
+
+        if (!$token = auth('api')->attempt($credentials)) {
+            return response()->json(['error' => 'Invalid email or password'], 401);
+        }
+
+        return $this->respondWithToken($token);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function logout()
     {
-        //
+        auth('api')->logout();
+
+        return response()->json(['message' => 'Successfully logged out']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    protected function respondWithToken($token)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60,
+        ]);
     }
 }
