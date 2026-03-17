@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    public function enroll($course)
+    public function enroll($course_id)
     {
-        # code...
+        $course = Course::findOrFail($course_id);
+        $user = auth('api')->user();
+        $user->student->courses()->syncWithoutDetaching($course->id);
+        return response()->json(['message' => 'Enrolled successfully'], 200);
     }
     /**
      * Display a listing of the resource.
