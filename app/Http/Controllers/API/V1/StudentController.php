@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    public function enroll($course)
+    {
+        # code...
+    }
     /**
      * Display a listing of the resource.
      */
