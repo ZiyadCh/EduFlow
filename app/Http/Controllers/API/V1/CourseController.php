@@ -21,31 +21,23 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        $course = Course::findOrFail($course_id);
-        $student = auth('api')->user()->student;
+        $fields = $request->validate([
+            'topic' => 'required|string|max:255',
+            'price' => 'required|numeric|min:1',
+        ]);
 
-        if (!$student) {
-            return response()->json(['error' => 'Student profile not found'], 404);
-        }
+        $course = Course::create([
+            'topic'   => $fields['topic'],
+            'price'   => $fields['price'],
+            'user_id' => auth('api')->id(),
+        ]);
 
-        $student->courses()->syncWithoutDetaching([$course->id]);
-
-        $group = $course->groups()
-            ->withCount('students')
-            ->having('membres', '<', 25)
-            ->first();
-
-        if (!$group) {
-            $group = $course->groups()->create();
-        }
-
-        $student->groups()->syncWithoutDetaching([$group->id]);
+        $group = $course->groups()->create(['course_id' => $course->id,'membres' => 0]);
 
         return response()->json([
-            'message' => 'Enrolled successfully',
-            'course' => $course->topic,
-            'group_id' => $group->id,
-        ]);
+            'course' => $course,
+            'group'  => $group,
+        ], 201);
 
     }
 

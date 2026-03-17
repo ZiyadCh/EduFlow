@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\API\V1\AuthController as V1AuthController;
 use App\Http\Controllers\API\V1\CourseController as V1CourseController;
+use App\Http\Controllers\API\V1\StudentController;
+use App\Http\Middleware\IsStudent;
 use App\Http\Middleware\IsTeacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,10 +21,15 @@ Route::prefix('v1')->group(function () {
         return auth('api')->user();
     });
 
-});
 
-Route::apiResource('courses', V1CourseController::class)->only(['index', 'show']);
+    Route::apiResource('courses', V1CourseController::class)->only(['index', 'show']);
 
-Route::middleware(['auth:api',IsTeacher::class])->group(function () {
-    Route::apiResource('courses', V1CourseController::class)->except(['index', 'show']);
+    Route::middleware(['auth:api',IsTeacher::class])->group(function () {
+        Route::apiResource('courses', V1CourseController::class)->except(['index', 'show']);
+    });
+
+    Route::middleware(['auth:api',IsStudent::class])->group(function () {
+        Route::post('/enroll/{course_id}', [StudentController::class,'enroll']);
+    });
+
 });

@@ -8,6 +8,7 @@ class Group extends Model
 {
     protected $fillable = [
         'course_id',
+        'membres',
     ];
     public function course()
     {

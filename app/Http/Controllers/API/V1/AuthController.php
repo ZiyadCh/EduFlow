@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Models\Student;
+use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -30,6 +32,16 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        if ($user->role === 'teacher') {
+            Teacher::create([
+                'user_id' => $user->id,
+            ]);
+        } elseif ($user->role === 'student') {
+            Student::create([
+                'user_id' => $user->id,
+            ]);
+        }
 
         $token = auth('api')->login($user);
 

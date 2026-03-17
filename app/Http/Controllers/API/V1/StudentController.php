@@ -10,9 +10,32 @@ class StudentController extends Controller
     public function enroll($course_id)
     {
         $course = Course::findOrFail($course_id);
-        $user = auth('api')->user();
-        $user->student->courses()->syncWithoutDetaching($course->id);
-        return response()->json(['message' => 'Enrolled successfully'], 200);
+        $student = auth('api')->user()->student;
+
+        if (!$student) {
+            return response()->json(['error' => 'Student profile not found'], 404);
+        }
+
+        $student->courses()->syncWithoutDetaching([$course->id]);
+
+        $group = $course->groups()
+            ->withCount('students')
+            ->having('membres', '<', 25)
+            ->first();
+
+        if (!$group) {
+            $group = $course->groups()->create();
+        }
+
+        $student->groups()->syncWithoutDetaching([$group->id]);
+
+        return response()->json([
+            'message' => 'Enrolled successfully',
+            'course' => $course->topic,
+            'group_id' => $group->id,
+        ]);
+
+
     }
     /**
      * Display a listing of the resource.
