@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use PHPUnit\Metadata\Group;
+use App\Models\Group;
 
 class Course extends Model
 {
