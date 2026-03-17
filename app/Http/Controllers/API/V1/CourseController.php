@@ -32,7 +32,15 @@ class CourseController extends Controller
             'user_id' => auth('api')->id(),
         ]);
 
-        return response()->json($course, 201);
+        $group = $course->group()->create([
+            'course_id' => $course->'id'
+        ]);
+
+        return response()->json([
+            'course' => $course,
+            'group'  => $group,
+        ], 201);
+
     }
 
     /**
