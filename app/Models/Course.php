@@ -8,6 +8,7 @@ use PHPUnit\Metadata\Group;
 class Course extends Model
 {
     protected $fillable = [
+        'user_id',
         'topic',
         'price',
     ];
