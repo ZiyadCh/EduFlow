@@ -13,4 +13,9 @@ class Group extends Model
     {
         return $this->belongsTo(Course::class);
     }
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class);
+    }
 }

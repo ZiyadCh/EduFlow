@@ -11,6 +11,11 @@ class Student extends Model
         return $this->belongsToMany(Course::class);
     }
 
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
