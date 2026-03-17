@@ -8,7 +8,7 @@ use App\Models\Group;
 class Course extends Model
 {
     protected $fillable = [
-        'user_id',
+        'teacher_id',
         'topic',
         'price',
     ];

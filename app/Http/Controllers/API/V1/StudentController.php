@@ -10,6 +10,7 @@ class StudentController extends Controller
     public function enroll($course_id)
     {
         $course = Course::findOrFail($course_id);
+
         $student = auth('api')->user()->student;
 
         if (!$student) {
@@ -19,23 +20,23 @@ class StudentController extends Controller
         $student->courses()->syncWithoutDetaching([$course->id]);
 
         $group = $course->groups()
-            ->withCount('students')
-            ->having('membres', '<', 25)
+            ->where('membres', '<', 25)
+            ->oldest()
             ->first();
 
         if (!$group) {
             $group = $course->groups()->create();
         }
 
+        $group->increment('membres');
+
         $student->groups()->syncWithoutDetaching([$group->id]);
 
         return response()->json([
-            'message' => 'Enrolled successfully',
-            'course' => $course->topic,
+            'message'  => 'Enrolled successfully',
+            'course'   => $course->topic,
             'group_id' => $group->id,
         ]);
-
-
     }
     /**
      * Display a listing of the resource.

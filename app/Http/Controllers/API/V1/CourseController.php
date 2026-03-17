@@ -29,7 +29,7 @@ class CourseController extends Controller
         $course = Course::create([
             'topic'   => $fields['topic'],
             'price'   => $fields['price'],
-            'user_id' => auth('api')->id(),
+            'teacher_id' => auth('api')->id(),
         ]);
 
         $group = $course->groups()->create(['course_id' => $course->id,'membres' => 0]);
