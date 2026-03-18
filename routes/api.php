@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\V1\AuthController as V1AuthController;
 use App\Http\Controllers\API\V1\CourseController as V1CourseController;
+use App\Http\Controllers\API\V1\GroupController as V1GroupController;
 use App\Http\Controllers\API\V1\StudentController;
 use App\Http\Middleware\IsStudent;
 use App\Http\Middleware\IsTeacher;
@@ -30,6 +31,10 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware(['auth:api',IsStudent::class])->group(function () {
         Route::post('/enroll/{course_id}', [StudentController::class,'enroll']);
+    });
+
+    Route::middleware(['auth:api'])->group(function () {
+        Route::apiResource('group', V1GroupController::class);
     });
 
 });
