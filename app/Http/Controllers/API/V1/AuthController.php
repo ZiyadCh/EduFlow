@@ -74,4 +74,25 @@ class AuthController extends Controller
             'expires_in' => auth('api')->factory()->getTTL() * 60,
         ]);
     }
+
+    public function resetPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $user = User::where('email', $request->email)->first();
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return response()->json([
+            'message' => 'Password successfully reset.',
+        ]);
+    }
 }
