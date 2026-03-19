@@ -38,6 +38,11 @@ class StudentController extends Controller
             'group_id' => $group->id,
         ]);
     }
+
+    public function retirer(Course $course)
+    {
+        # code...
+    }
     /**
      * Display a listing of the resource.
      */
