@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    //enrolling in a course function
     public function enroll($course_id)
     {
         $course = Course::findOrFail($course_id);
@@ -36,6 +37,36 @@ class StudentController extends Controller
             'message'  => 'Enrolled successfully',
             'course'   => $course->topic,
             'group_id' => $group->id,
+        ]);
+    }
+
+    //favoriting function
+    public function favorite($course_id)
+    {
+        $course = Course::findOrFail($course_id);
+        $student = auth('api')->user()->student;
+
+        if (!$student) {
+            return response()->json(['error' => 'Student profile not found'], 404);
+        }
+
+        $favorite = $student->favorites()->where('course_id', $course->id)->first();
+
+        if ($favorite) {
+            $favorite->delete();
+            return response()->json([
+                'message' => 'Course removed from favorites',
+                'course'  => $course->topic,
+            ]);
+        }
+
+        $student->favorites()->create([
+            'course_id' => $course->id,
+        ]);
+
+        return response()->json([
+            'message' => 'Course added to favorites',
+            'course'  => $course->topic,
         ]);
     }
 

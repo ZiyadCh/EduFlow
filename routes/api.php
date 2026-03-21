@@ -36,5 +36,6 @@ Route::prefix('v1')->group(function () {
     Route::middleware(['auth:api'])->group(function () {
         Route::apiResource('group', V1GroupController::class);
     });
+    Route::post('favorite/{course}', [StudentController::class,'favorite'])->name('favorite');
 
 });
