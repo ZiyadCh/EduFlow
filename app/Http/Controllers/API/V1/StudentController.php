@@ -40,6 +40,33 @@ class StudentController extends Controller
         ]);
     }
 
+    public function unenroll($course_id)
+    {
+        $course = Course::findOrFail($course_id);
+        $student = auth('api')->user()->student;
+
+        if (!$student) {
+            return response()->json(['error' => 'Student profile not found'], 404);
+        }
+
+        if (!$student->courses()->whereKey($course->id)->exists()) {
+            return response()->json(['error' => 'Not enrolled in this course'], 409);
+        }
+        $group = $student->groups()
+            ->where('groups.course_id', $course->id)
+            ->first();
+
+
+        if ($group) {
+            $student->groups()->detach($group->id);
+            $group->decrement('membres');
+        }
+
+        $student->courses()->detach($course->id);
+
+        return response()->json(['message' => 'Unenrolled successfully']);
+    }
+
     //favoriting function
     public function favorite($course_id)
     {
