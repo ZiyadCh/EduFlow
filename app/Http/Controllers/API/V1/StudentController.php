@@ -4,42 +4,38 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Laravel\Cashier\Exceptions\IncompletePayment;
 
 class StudentController extends Controller
 {
     //enrolling in a course function
     public function enroll($course_id)
     {
-        $course = Course::findOrFail($course_id);
-
+        $course  = Course::findOrFail($course_id);
         $student = auth('api')->user()->student;
 
         if (!$student) {
             return response()->json(['error' => 'Student profile not found'], 404);
         }
 
-        $student->courses()->syncWithoutDetaching([$course->id]);
-
-        $group = $course->groups()
-            ->where('membres', '<', 25)
-            ->oldest()
-            ->first();
-
-        if (!$group) {
-            $group = $course->groups()->create();
+        if ($student->courses()->whereKey($course->id)->exists()) {
+            return response()->json(['error' => 'Already enrolled'], 409);
         }
 
-        $group->increment('membres');
+        $session = auth('api')->user()->checkoutCharge(
+            $course->price * 100,
+            $course->topic,
+            1,
+            [
+                'metadata'    => [
+                    'course_id'  => $course->id,
+                    'student_id' => $student->id,
+                ],
+            ]
+        );
 
-        $student->groups()->syncWithoutDetaching([$group->id]);
-
-        return response()->json([
-            'message'  => 'Enrolled successfully',
-            'course'   => $course->topic,
-            'group_id' => $group->id,
-        ]);
+        return response()->json(['checkout_url' => $session->url]);
     }
-
     public function unenroll($course_id)
     {
         $course = Course::findOrFail($course_id);
