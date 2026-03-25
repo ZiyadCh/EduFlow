@@ -107,4 +107,33 @@ class StudentController extends Controller
         ]);
     }
 
+    //user choses their interests
+    public function addInterest(Request $request)
+    {
+        $student = auth('api')->user()->student;
+
+        if (!$student) {
+            return response()->json(['error' => 'Student profile not found'], 404);
+        }
+
+        $request->validate([
+            'interest_id' => 'required|exists:interests,id',
+        ]);
+
+        $already = $student->interests()->whereKey($request->interest_id)->exists();
+
+        if ($already) {
+            $student->interests()->detach($request->interest_id);
+            return response()->json([
+                'message'  => 'Interest removed successfully',
+            ]);
+        }
+
+        $student->interests()->attach($request->interest_id);
+
+        return response()->json([
+            'message'  => 'Interest added successfully',
+        ]);
+    }
+
 }
