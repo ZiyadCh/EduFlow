@@ -95,10 +95,11 @@ class StudentController extends Controller
         ]);
     }
 
+    //afficher les cours favorise
     public function showFavorites()
     {
         $student = auth('api')->user()->student;
-        $favorites = $student->favorites();
+        $favorites = $student->favorites()->with('courses')->get();
 
         return response()->json([
             'message' => 'votre courses sauvegardé',
