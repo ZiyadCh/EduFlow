@@ -106,12 +106,4 @@ class StudentController extends Controller
         ]);
     }
 
-    public function retirer(Course $course)
-    {
-        # code...
-    }
-    /**
-     * Display a listing of the resource.
-     */
-
 }
