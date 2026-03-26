@@ -151,12 +151,12 @@ class StudentController extends Controller
         ]);
     }
 
-    //show all  interests
+    //show all  interests for this student
     public function showInterest(Interest $interest)
     {
 
-        $student = auth('api')->user();
-        $interests =
+        $student = auth('api')->user()->student;
+        $interests = $student->interests()->get();
 
         return response()->json([
             'interests' => $interests,
