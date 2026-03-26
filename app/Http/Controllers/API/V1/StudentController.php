@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Models\Course;
+use App\Models\Interest;
 use Illuminate\Http\Request;
 use Laravel\Cashier\Exceptions\IncompletePayment;
 
@@ -133,6 +134,58 @@ class StudentController extends Controller
 
         return response()->json([
             'message'  => 'Interest added successfully',
+        ]);
+    }
+
+    //user deltes an interest
+    public function removeInterest(Interest $interest)
+    {
+        $student = auth('api')->user()->student;
+
+        if (!$student) {
+            return response()->json(['error' => 'Student profile not found'], 404);
+        }
+
+        $exists = $student->interests()->where('id', $interest->id)->exists();
+
+        if (!$exists) {
+            return response()->json(['error' => 'Interest not attached to student'], 404);
+        }
+
+        $student->interests()->detach($interest->id);
+
+        return response()->json([
+            'message' => 'Interest removed successfully',
+        ]);
+    }
+
+    //show all  interests
+    public function showInterest(Interest $interest)
+    {
+
+        $interests = Interest::all();
+
+        return response()->json([
+            'interests' => $interests,
+        ]);
+
+    }
+
+    //list of courses accordin to interest
+    public function feed()
+    {
+        $student = auth('api')->user()->student;
+
+        if (!$student) {
+            return response()->json(['error' => 'Student profile not found'], 404);
+        }
+
+        $interestNames = $student->interests->pluck('name')->toArray();
+
+        $courses = Course::whereIn('topic', $interestNames)->get();
+
+        return response()->json([
+            'courses' => $courses,
         ]);
     }
 

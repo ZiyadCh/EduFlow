@@ -40,6 +40,11 @@ Route::prefix('v1')->group(function () {
     Route::middleware(['auth:api'])->group(function () {
         Route::post('favorite/{course}', [StudentController::class,'favorite'])->name('favorite');
         Route::get('favorites', [StudentController::class,'showFavorites'])->name('showFavorites');
+
+        Route::post('interest', [StudentController::class,'addInterest']);
+        Route::delete('interest', [StudentController::class,'removeInterest']);
+        Route::get('interests', [StudentController::class,'showInterest']);
+        Route::get('feed', [StudentController::class,'feed']);
     });
 
     Route::delete('/course/unenroll/{course_id}', [StudentController::class,'unenroll'])->name('unenroll');
