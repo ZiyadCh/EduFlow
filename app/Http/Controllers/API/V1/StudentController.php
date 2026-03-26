@@ -118,22 +118,16 @@ class StudentController extends Controller
         }
 
         $request->validate([
-            'interest_id' => 'required|exists:interests,id',
+            'name' => 'required|string|max:255',
         ]);
 
-        $already = $student->interests()->whereKey($request->interest_id)->exists();
-
-        if ($already) {
-            $student->interests()->detach($request->interest_id);
-            return response()->json([
-                'message'  => 'Interest removed successfully',
-            ]);
-        }
-
-        $student->interests()->attach($request->interest_id);
+        $interest = $student->interests()->create([
+            'name' => $request->name,
+        ]);
 
         return response()->json([
-            'message'  => 'Interest added successfully',
+            'message' => 'Interest added successfully',
+            'interest' => $interest,
         ]);
     }
 
@@ -146,13 +140,11 @@ class StudentController extends Controller
             return response()->json(['error' => 'Student profile not found'], 404);
         }
 
-        $exists = $student->interests()->where('id', $interest->id)->exists();
-
-        if (!$exists) {
-            return response()->json(['error' => 'Interest not attached to student'], 404);
+        if ($interest->student_id !== $student->id) {
+            return response()->json(['error' => 'Interest does not belong to you'], 403);
         }
 
-        $student->interests()->detach($interest->id);
+        $interest->delete();
 
         return response()->json([
             'message' => 'Interest removed successfully',
@@ -163,7 +155,8 @@ class StudentController extends Controller
     public function showInterest(Interest $interest)
     {
 
-        $interests = Interest::all();
+        $student = auth('api')->user();
+        $interests =
 
         return response()->json([
             'interests' => $interests,
