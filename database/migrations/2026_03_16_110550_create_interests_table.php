@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('interests', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('student_id')->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->timestamps();
         });
