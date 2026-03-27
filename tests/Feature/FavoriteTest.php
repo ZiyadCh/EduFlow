@@ -16,10 +16,7 @@ class FavoriteTest extends TestCase
      */
     public function test_example(): void
     {
-        $user = User::factory()->create();
-        $student = Student::factory()->create([
-            'user_id' => $user->id,
-        ]);
+        $student = Student::factory()->create();
 
         $response = $this->actingAs($student)->getJson('/api/v1/favorites');
 
