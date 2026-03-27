@@ -42,8 +42,9 @@ Route::prefix('v1')->group(function () {
         Route::post('favorite/{course}', [StudentController::class,'favorite'])->name('favorite');
         Route::get('favorites', [StudentController::class,'showFavorites'])->name('showFavorites');
 
+        Route::apiResource('interests', InterestController::class);
+
     });
-    Route::apiResource('interests', InterestController::class);
 
     Route::delete('/course/unenroll/{course_id}', [StudentController::class,'unenroll'])->name('unenroll');
 
