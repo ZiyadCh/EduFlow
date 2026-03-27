@@ -3,7 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
+use Illuminate\Auth\Authenticatable as IlluminateAuthenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -16,6 +16,7 @@ class User extends Authenticatable implements JWTSubject
     use HasFactory;
     use Notifiable;
     use Billable;
+    use IlluminateAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
