@@ -35,7 +35,7 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::middleware(['auth:api'])->group(function () {
-        Route::apiResource('group', V1GroupController::class);
+        Route::apiResource('groups', V1GroupController::class);
     });
 
     Route::middleware(['auth:api'])->group(function () {
