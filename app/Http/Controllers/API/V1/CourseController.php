@@ -11,9 +11,30 @@ class CourseController extends Controller
     /**
      * Display a listing of all courses.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Course::all(), 200);
+        $query = Course::query();
+
+        if ($request->has('topic')) {
+            $query->where('topic', 'like', '%' . $request->topic . '%');
+        }
+
+        if ($request->has('min_price')) {
+            $query->where('price', '>=', $request->min_price);
+        }
+
+        if ($request->has('max_price')) {
+            $query->where('price', '<=', $request->max_price);
+        }
+
+        if ($request->has('teacher_id')) {
+            $query->where('teacher_id', $request->teacher_id);
+        }
+
+
+        $courses = $query->get();
+
+        return response()->json($courses, 200);
     }
 
     /**
