@@ -155,7 +155,7 @@ class StudentController extends Controller
     public function showInterest(Interest $interest)
     {
 
-        $student = auth('api')->user()->student;
+        $student = auth('api')->user();
         $interests = $student->interests()->get();
 
         return response()->json([

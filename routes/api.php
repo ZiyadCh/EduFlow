@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\V1\AuthController as V1AuthController;
 use App\Http\Controllers\API\V1\CourseController as V1CourseController;
 use App\Http\Controllers\API\V1\GroupController as V1GroupController;
+use App\Http\Controllers\API\V1\InterestController;
 use App\Http\Controllers\API\V1\StudentController;
 use App\Http\Middleware\IsStudent;
 use App\Http\Middleware\IsTeacher;
@@ -41,10 +42,7 @@ Route::prefix('v1')->group(function () {
         Route::post('favorite/{course}', [StudentController::class,'favorite'])->name('favorite');
         Route::get('favorites', [StudentController::class,'showFavorites'])->name('showFavorites');
 
-        Route::post('interest', [StudentController::class,'addInterest']);
-        Route::delete('interest', [StudentController::class,'removeInterest']);
-        Route::get('interests', [StudentController::class,'showInterest']);
-        Route::get('feed', [StudentController::class,'feed']);
+        Route::apiResource('interests', InterestController::class);
     });
 
     Route::delete('/course/unenroll/{course_id}', [StudentController::class,'unenroll'])->name('unenroll');
