@@ -18,7 +18,7 @@ class FavoriteTest extends TestCase
     {
         $student = Student::factory()->create();
 
-        $response = $this->actingAs($student)->getJson('/api/v1/favorites');
+        $response = $this->actingAs($student->user)->getJson('/api/v1/favorites');
 
         $response->assertStatus(200);
     }
