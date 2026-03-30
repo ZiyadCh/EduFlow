@@ -1,15 +1,6 @@
-
+<script src="{{ asset('/js/course.js') }}" defer></script>
 @extends('layouts.app')
 
-@php
-    $courses = [
-        (object)['title' => 'Mastering Laravel 11', 'teacher' => 'Taylor Otwell', 'price' => 49.99],
-        (object)['title' => 'Advanced UI Components', 'teacher' => 'Adam Wathan', 'price' => 29.00],
-        (object)['title' => 'Database Design Pro', 'teacher' => 'Aaron Francis', 'price' => 55.50],
-        (object)['title' => 'React Native Mastery', 'teacher' => 'Dan Abramov', 'price' => 19.99],
-        (object)['title' => 'Serverless Functions', 'teacher' => 'Sarah Drasner', 'price' => 35.00],
-    ];
-@endphp
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

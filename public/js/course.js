@@ -16,8 +16,8 @@ async function fetchCourses() {
                 </button>
 
                 <div class='flex flex-col h-full'>
-                    <p class='text-xs font-bold uppercase text-blue-600 mb-1'>
-                        Instructor ID: ${course.teacher_id}
+                    <p class='text-xs font-bold text-blue-600 mb-1'>
+                        Ensaignat: ${course.teacher.user.nom} ${course.teacher.user.prenom}
                     </p>
 
                     <h3 class='text-lg font-extrabold text-slate-900 mb-6'>

@@ -32,7 +32,7 @@ class CourseController extends Controller
         }
 
 
-        $courses = $query->get();
+        $courses = $query->with('teacher.user')->get();
 
         return response()->json($courses, 200);
     }
