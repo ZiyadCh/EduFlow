@@ -9,30 +9,53 @@
     <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
 <body class="bg-gray-100 text-slate-900">
-    <nav class="bg-white border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center space-x-8">
-                    <div class="text-xl font-extrabold text-blue-600 tracking-tight italic">Edu Flow</div>
-                    <div class="hidden md:flex space-x-4">
-                        <a href="feed" class="text-blue-600 font-semibold border-b-2 border-blue-600 px-1 pt-1 text-sm">Dashboard</a>
-                        <a href="courses" class="text-slate-500 hover:text-blue-600 px-1 pt-1 text-sm transition">Courses</a>
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16 gap-4">
+
+            <div class="flex items-center space-x-8 shrink-0">
+                <div class="text-xl font-extrabold text-blue-600 tracking-tight italic">Edu Flow</div>
+                <div class="hidden lg:flex space-x-4">
+                        <a href="feed" class="text-blue-600 font-semibold border-b-2 border-blue-600 px-1 pt-1 text-sm">Home</a>
+                        <a href="my-courses" class="text-slate-500 hover:text-blue-600 px-1 pt-1 text-sm transition">Mes Coures</a>
+                        <a href="courses" class="text-slate-500 hover:text-blue-600 px-1 pt-1 text-sm transition">Coures</a>
                         <a href="saved" class="text-slate-500 hover:text-blue-600 px-1 pt-1 text-sm transition">Saved</a>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <div class="text-right">
-                        <p class="text-sm font-bold leading-none">John Doe</p>
-                        <p class="text-xs text-slate-400">Student Account</p>
-                    </div>
-                    <div class="h-10 w-10 rounded-xl bg-slate-900 flex items-center justify-center text-white font-bold shadow-lg">JD</div>
                 </div>
             </div>
+
+            <div class="flex-1 max-w-md hidden sm:block">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </span>
+                    <input
+                        type="text"
+                        id="filterTopic"
+                        oninput="fetchCourses()"
+                        placeholder="Search courses..."
+                        class="block w-full pl-9 pr-3 py-1.5 bg-gray-100 border-transparent rounded-xl text-sm placeholder-gray-500 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+                    >
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-4 shrink-0">
+                <div class="text-right hidden sm:block">
+                    <p class="text-sm font-bold leading-none">John Doe</p>
+                    <p class="text-xs text-slate-400">Student</p>
+                </div>
+                <div class="h-10 w-10 rounded-xl bg-slate-900 flex items-center justify-center text-white font-bold shadow-lg">JD</div>
+            </div>
+
         </div>
-    </nav>
+    </div>
+</nav>
 
     <main class="py-8">
         @yield('content')
     </main>
 </body>
 </html>
+
+
