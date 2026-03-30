@@ -9,8 +9,10 @@ class Course extends Model
 {
     protected $fillable = [
         'teacher_id',
-        'topic',
+        'name',
         'price',
+        'field',
+        'desc',
     ];
     public function students()
     {

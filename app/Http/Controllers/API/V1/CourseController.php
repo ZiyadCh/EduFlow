@@ -43,13 +43,17 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $fields = $request->validate([
-            'topic' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'desc' => 'required|string',
+            'field' => 'required|string|max:255',
             'price' => 'required|numeric|min:1',
         ]);
 
         $course = Course::create([
-            'topic'   => $fields['topic'],
+            'name'   => $fields['name'],
             'price'   => $fields['price'],
+            'desc'    => $fields['desc'],
+            'field'   => $fields['field'],
             'teacher_id' => auth('api')->user()->teacher->id,
         ]);
 
