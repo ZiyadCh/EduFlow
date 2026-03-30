@@ -30,6 +30,10 @@ async function fetchCourses() {
                         </span>
                     </div>
                 </div>
+
+                <button class='absolute bottom-4 right-4 text-blue-600 border border-b-blue-400 rounded-2xl p-2 hover:bg-blue-600 hover:text-white transition text-xl'>
+Inscrire
+                </button>
             </div>`,
         )
         .join("");
