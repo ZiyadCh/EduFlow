@@ -86,8 +86,11 @@ class CourseController extends Controller
 
 
         $fields = $request->validate([
-            'topic' => 'string|max:255',
-            'price' => 'numeric|min:0',
+
+            'name' => 'required|string|max:255',
+            'desc' => 'required|string',
+            'field' => 'required|string|max:255',
+            'price' => 'required|numeric|min:1',
         ]);
 
         $course->update($fields);
