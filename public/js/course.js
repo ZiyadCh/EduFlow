@@ -56,4 +56,4 @@ async function fetchCourses() {
     });
 }
 
-fetchCourses();
+window.addEventListener("DOMContentLoaded", fetchCourses);
