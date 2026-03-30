@@ -62,13 +62,13 @@ async function fetchCourses() {
         contentDiv.appendChild(teacherName);
         contentDiv.appendChild(title);
         contentDiv.appendChild(field);
-        contentDiv.appendChild(viewMoreBtn);
         contentDiv.appendChild(priceSpan);
         contentDiv.appendChild(description);
 
         card.appendChild(favBtn);
         card.appendChild(contentDiv);
         card.appendChild(enrollBtn);
+        contentDiv.appendChild(viewMoreBtn);
 
         container.appendChild(card);
     });
