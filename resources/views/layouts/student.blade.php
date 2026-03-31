@@ -17,9 +17,9 @@
             <div class="flex items-center space-x-8 shrink-0">
                 <div class="text-xl font-extrabold text-blue-600 tracking-tight italic">Edu Flow</div>
                 <div class="hidden lg:flex space-x-4">
-                        <a href="feed" class="text-blue-600 font-semibold border-b-2 border-blue-600 px-1 pt-1 text-sm">Home</a>
+                        <a href="feed" class="text-slate-500 hover:text-blue-600 px-1 pt-1 text-sm transition">Home</a>
+                        <a href="courses" class="text-blue-600 font-semibold border-b-2 border-blue-600 px-1 pt-1 text-sm">Coures</a>
                         <a href="my-courses" class="text-slate-500 hover:text-blue-600 px-1 pt-1 text-sm transition">Mes Coures</a>
-                        <a href="courses" class="text-slate-500 hover:text-blue-600 px-1 pt-1 text-sm transition">Coures</a>
                         <a href="saved" class="text-slate-500 hover:text-blue-600 px-1 pt-1 text-sm transition">Saved</a>
                 </div>
             </div>
