@@ -1,15 +1,12 @@
 async function searchCourse() {
-    const searchBar = document.getElementById("searchCourse");
+    const query = document.getElementById("searchCourse").value;
 
-    const response = await fetch("api/v1/courses");
-    const data = await response.json();
-
-    //the value from the search bar
-    const value = searchBar.value;
-    const results = data.filter((course) =>
-        course.name.includes(value).toLowerCase(),
+    const response = await fetch(
+        `api/v1/courses?name=${encodeURIComponent(query)}`,
     );
-    console.log(results);
+    const results = await response.json();
+
+    renderResults(results);
 }
 
 const searchBtn = document.getElementById("searchBtn");
