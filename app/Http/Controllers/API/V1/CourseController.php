@@ -15,8 +15,8 @@ class CourseController extends Controller
     {
         $query = Course::query();
 
-        if ($request->has('topic')) {
-            $query->where('topic', 'like', '%' . $request->topic . '%');
+        if ($request->has('name')) {
+            $query->where('name', 'like', '%' . $request->name . '%');
         }
 
         if ($request->has('min_price')) {

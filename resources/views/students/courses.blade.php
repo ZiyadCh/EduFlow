@@ -1,5 +1,7 @@
-<script src="{{ asset('/js/course.js') }}" defer></script>
 @extends('layouts.student')
+<script src="{{ asset('/js/course.js') }}" defer></script>
+<script src="{{ asset('/js/search.js') }}" defer></script>
+
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
