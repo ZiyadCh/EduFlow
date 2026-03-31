@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EduFlow | Inscription</title>
-    <script src="{{ asset('js/auth') }}" defer></script>
+    <script src="{{ asset('js/auth.js') }}" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>body { font-family: 'Inter', sans-serif; }</style>
@@ -18,7 +18,7 @@
             <p class="text-sm text-slate-500">Rejoignez notre communauté d'apprentissage</p>
         </div>
 
-        <form id="registerForm" action="api/v1/register" method="POST" class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+        <form id="registerForm" method="POST" class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
 
             <div class="grid grid-cols-2 gap-4">
                 <div>
