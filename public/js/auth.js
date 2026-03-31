@@ -12,6 +12,7 @@ async function register(e) {
         body: JSON.stringify({
             nom: formData.get("nom"),
             prenom: formData.get("prenom"),
+            role: formData.get("role"),
             email: formData.get("email"),
             password: formData.get("password"),
         }),
@@ -22,6 +23,7 @@ async function register(e) {
     }
     const data = await response.json();
     console.log(data);
+    localStorage.setItem("token", data.access_token);
 }
 
 const form = document.getElementById("registerForm");
