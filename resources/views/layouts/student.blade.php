@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduPlatform Mockup</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ asset('js/auth/user.js') }}" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
@@ -41,7 +42,7 @@
 
             <div class="flex items-center space-x-4 shrink-0">
                 <div class="text-right hidden sm:block">
-                    <p class="text-sm font-bold leading-none">{{auth()->user()->nom}}</p>
+                    <p class="text-sm font-bold leading-none"></p>
                     <p class="text-xs text-slate-400">Student</p>
                 </div>
                 <div class="h-10 w-10 rounded-xl bg-slate-900 flex items-center justify-center text-white font-bold shadow-lg">JD</div>

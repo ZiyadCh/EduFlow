@@ -1,6 +1,7 @@
 async function login(e) {
     e.preventDefault();
     const formData = new FormData(form);
+
     const response = await fetch("api/v1/login", {
         method: "POST",
         headers: {
@@ -11,12 +12,14 @@ async function login(e) {
             password: formData.get("password"),
         }),
     });
+
     const data = await response.json();
     if (!response.ok) {
         console.log(data);
         return;
     }
 
+    localStorage.setItem("token", data.access_token);
     window.location.href = "courses";
 }
 
