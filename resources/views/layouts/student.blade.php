@@ -41,7 +41,7 @@
 
             <div class="flex items-center space-x-4 shrink-0">
                 <div class="text-right hidden sm:block">
-                    <p class="text-sm font-bold leading-none">John Doe</p>
+                    <p class="text-sm font-bold leading-none">{{auth()->user()->nom}}</p>
                     <p class="text-xs text-slate-400">Student</p>
                 </div>
                 <div class="h-10 w-10 rounded-xl bg-slate-900 flex items-center justify-center text-white font-bold shadow-lg">JD</div>

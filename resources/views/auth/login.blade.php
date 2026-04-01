@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EduFlow | Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ asset('js/auth/login.js') }}" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
@@ -15,7 +16,7 @@
             <div class="text-3xl font-extrabold text-blue-600 mb-2">Edu Flow</div>
         </div>
 
-        <form action="api/v1/login" method="POST" class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-5">
+        <form id="loginForm" class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-5">
             <div>
                 <label for="email" class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 ml-1">Email</label>
                 <input type="email" name="email" id="email" placeholder="votre@email.com"

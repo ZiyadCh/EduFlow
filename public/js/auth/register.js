@@ -18,12 +18,14 @@ async function register(e) {
         }),
     });
 
-    if (!response) {
+    if (!response.ok) {
         console.log("error");
     }
     const data = await response.json();
     console.log(data);
     localStorage.setItem("token", data.access_token);
+
+    window.location.href = "courses";
 }
 
 const form = document.getElementById("registerForm");
