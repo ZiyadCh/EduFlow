@@ -17,3 +17,7 @@ Route::get('/courses', function () {
 Route::get('/teacher/dashboard', function () {
     return view('teacher.courses');
 });
+
+Route::get('/teacher/course-form', function () {
+    return view('teacher.new-course');
+});
