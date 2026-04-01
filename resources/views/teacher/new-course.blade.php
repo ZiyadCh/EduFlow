@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="w-full flex justify-center px-6">
-<form id="loginForm" class=" bg-white w-1/2 p-8 rounded-3xl border border-slate-200 shadow-sm space-y-5">
+<form id="courseForm" class=" bg-white w-1/2 p-8 rounded-3xl border border-slate-200 shadow-sm space-y-5">
             <div>
                 <label for="nom" class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 ml-1">nom</label>
                 <input type="text" name="nom" id="nom"class="w-full px-4 py-3 bg-gray-100 border-transparent rounded-2xl text-sm focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent transition outline-none">

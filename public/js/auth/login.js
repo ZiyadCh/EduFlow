@@ -21,6 +21,9 @@ async function login(e) {
 
     localStorage.setItem("token", data.access_token);
     localStorage.setItem("user", JSON.stringify(data.user));
+
+    sessionStorage.setItem("token", data.access_token);
+    sessionStorage.setItem("user", JSON.stringify(data.user));
     console.log(data);
     console.log(data.user.role);
     if (data.user.role === "teacher") {
