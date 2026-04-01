@@ -1,5 +1,12 @@
 //getting user info function
 async function user() {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        console.error("No token, redirecting to login");
+        window.location.href = "/login";
+        return;
+    }
+
     try {
         const response = await fetch("/api/v1/user", {
             headers: {
@@ -18,7 +25,7 @@ async function user() {
 
         name.textContent = user.nom;
     } catch (err) {
-        console.error("Network error:", err);
+        console.error("Network or CORS error:", err);
     }
 }
 

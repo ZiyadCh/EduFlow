@@ -10,17 +10,15 @@ Route::get('/register', function () {
     return view('auth.register');
 });
 
-Route::middleware(['auth:api'])->group(function () {
 
-    Route::get('/courses', function () {
-        return view('students.courses');
-    });
+Route::get('/courses', function () {
+    return view('students.courses');
+});
 
-    Route::get('/teacher/dashboard', function () {
-        return view('teacher.courses');
-    });
+Route::get('/teacher/dashboard', function () {
+    return view('teacher.courses');
+});
 
-    Route::get('/teacher/course-form', function () {
-        return view('teacher.new-course');
-    });
+Route::get('/teacher/course-form', function () {
+    return view('teacher.new-course');
 });
