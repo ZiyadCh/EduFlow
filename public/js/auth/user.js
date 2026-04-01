@@ -1,3 +1,4 @@
+//getting user info function
 async function user() {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -20,10 +21,17 @@ async function user() {
         }
 
         const user = await response.json();
-        console.log("Logged in user:", user);
-        document.getElementById("username").textContent = user.nom;
+        const name = document.getElementById("username");
+
+        name.textContent = user.nom;
     } catch (err) {
         console.error("Network or CORS error:", err);
     }
+}
+
+//logout
+function logout() {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
 }
 user();

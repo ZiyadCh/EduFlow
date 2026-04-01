@@ -13,3 +13,7 @@ Route::get('/register', function () {
 Route::get('/courses', function () {
     return view('students.courses');
 });
+
+Route::get('/teacher', function () {
+    return view('teacher.courses');
+});
