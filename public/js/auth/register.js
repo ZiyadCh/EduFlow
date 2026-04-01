@@ -25,7 +25,7 @@ async function register(e) {
     console.log(data);
     localStorage.setItem("token", data.access_token);
 
-    window.location.href = "courses";
+    window.location.href = "login";
 }
 
 const form = document.getElementById("registerForm");

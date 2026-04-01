@@ -20,7 +20,14 @@ async function login(e) {
     }
 
     localStorage.setItem("token", data.access_token);
-    window.location.href = "courses";
+    localStorage.setItem("user", JSON.stringify(data.user));
+    console.log(data);
+    console.log(data.user.role);
+    if (data.user.role === "teacher") {
+        window.location.href = "/teacher/dashboard";
+    } else {
+        window.location.href = "/courses";
+    }
 }
 
 const form = document.getElementById("loginForm");

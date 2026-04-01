@@ -14,6 +14,6 @@ Route::get('/courses', function () {
     return view('students.courses');
 });
 
-Route::get('/teacher', function () {
+Route::get('/teacher/dashboard', function () {
     return view('teacher.courses');
 });

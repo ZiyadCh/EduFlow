@@ -46,6 +46,7 @@ class AuthController extends Controller
         $token = auth('api')->login($user);
 
         return $this->respondWithToken($token);
+
     }
 
     public function login(Request $request)
@@ -56,7 +57,12 @@ class AuthController extends Controller
             return response()->json(['error' => 'Invalid email or password'], 401);
         }
 
-        return $this->respondWithToken($token);
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60,
+            'user' => auth('api')->user(),
+        ]);
     }
 
     public function logout()

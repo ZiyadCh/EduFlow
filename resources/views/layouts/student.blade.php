@@ -47,9 +47,18 @@
                 </div>
                 <div class="h-10 w-10 rounded-xl bg-slate-900 flex items-center justify-center text-white font-bold shadow-lg">JD</div>
             </div>
-
-        </div>
+<div class="border-l border-gray-200 ml-2 pl-4">
+        <button
+            onclick="logout()"
+            class="text-xs font-bold text-slate-400 hover:text-red-600 transition flex items-center gap-1 group"
+        >
+                            Deconnexion
+        </button>
     </div>
+        </div>
+
+    </div>
+
 </nav>
 
     <main class="py-8">
