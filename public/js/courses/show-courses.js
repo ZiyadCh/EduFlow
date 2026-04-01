@@ -1,3 +1,5 @@
+import { createCourseCard } from "./course-card.js";
+
 async function fetchCourses() {
     const container = document.getElementById("container");
     const response = await fetch("/api/v1/courses");

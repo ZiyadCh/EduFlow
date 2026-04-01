@@ -1,4 +1,4 @@
-function createCourseCard(course) {
+export function createCourseCard(course) {
     const card = document.createElement("div");
     card.className =
         "relative bg-white border border-slate-200 rounded-2xl p-6 shadow-sm transition-all duration-300 hover:shadow-md";

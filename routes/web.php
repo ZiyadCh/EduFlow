@@ -4,20 +4,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', function () {
     return view('auth.login');
-});
+})->name('login');
 
 Route::get('/register', function () {
     return view('auth.register');
 });
 
-Route::get('/courses', function () {
-    return view('students.courses');
-});
+Route::middleware(['auth:api'])->group(function () {
 
-Route::get('/teacher/dashboard', function () {
-    return view('teacher.courses');
-});
+    Route::get('/courses', function () {
+        return view('students.courses');
+    });
 
-Route::get('/teacher/course-form', function () {
-    return view('teacher.new-course');
+    Route::get('/teacher/dashboard', function () {
+        return view('teacher.courses');
+    });
+
+    Route::get('/teacher/course-form', function () {
+        return view('teacher.new-course');
+    });
 });
