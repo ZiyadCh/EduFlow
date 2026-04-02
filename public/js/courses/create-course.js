@@ -1,3 +1,4 @@
+import token from "../auth/token.js";
 async function createCourse(e) {
     e.preventDefault();
     const request = new FormData(form);
@@ -17,8 +18,9 @@ async function createCourse(e) {
     });
     if (!response.ok) {
         console.log("erroro");
+    } else {
+        window.location.href = "/dashboard";
     }
-    console.log(response);
 }
 const form = document.getElementById("courseForm");
 form.addEventListener("submit", createCourse);

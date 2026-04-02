@@ -1,4 +1,4 @@
-const token = localStorage.getItem("token");
+import token from "../auth/token.js";
 if (!token) {
     console.error("No token, redirecting to login");
     window.location.replace("/login");
