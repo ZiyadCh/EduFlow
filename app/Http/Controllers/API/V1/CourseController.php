@@ -27,8 +27,10 @@ class CourseController extends Controller
             $query->where('price', '<=', $request->max_price);
         }
 
-        if ($request->has('teacher')) {
-            $query->where('teacher_id', $request->teacher_id);
+        if ($request->has('user_id')) {
+            $query->whereHas('teacher.user', function ($q) use ($request) {
+                $q->where('id', $request->user_id);
+            });
         }
 
 

@@ -1,4 +1,4 @@
-<script src="{{ asset('js/courses/show-courses') }}">
+<script type="module" src="{{ asset('/js/courses/teachers-courses.js') }}" defer>
 
 </script>
 @extends('layouts.teacher')
@@ -12,6 +12,6 @@
         </button>
     </div>
 
-    <div id="container">
+    <div id="container" class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         </div>
 @endsection
