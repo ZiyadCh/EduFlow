@@ -45,9 +45,10 @@ export function createCourseCard(course) {
     const enrollBtn = document.createElement("button");
     enrollBtn.className =
         "absolute bottom-4 right-4 text-blue-600 border border-blue-400 rounded-xl px-4 py-1 hover:bg-blue-600 hover:text-white transition text-sm font-bold";
+    enrollBtn.dataset.courseId = course.id;
     enrollBtn.textContent = "Inscrire";
+    enrollBtn.id = "enrollBtn";
 
-    // --- Assembly  --- \\
     contentDiv.append(
         teacherName,
         title,

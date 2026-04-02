@@ -67,4 +67,10 @@
 </body>
 </html>
 
+    <script>
+        function logout() {
+            localStorage.removeItem("token");
+            window.location.href = "/login";
+        }
+    </script>
 

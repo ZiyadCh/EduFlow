@@ -1,5 +1,4 @@
 @extends('layouts.student')
-<script src="{{ asset('/js/courses/courses-card.js') }}" defer></script>
 <script type="module" src="{{ asset('/js/courses/show-courses.js') }}" defer></script>
 <script src="{{ asset('/js/courses/search.js') }}" defer></script>
 

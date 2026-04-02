@@ -19,7 +19,7 @@ async function createCourse(e) {
     if (!response.ok) {
         console.log("erroro");
     } else {
-        window.location.href = "/dashboard";
+        window.location.href = "/teacher/dashboard";
     }
 }
 const form = document.getElementById("courseForm");
