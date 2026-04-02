@@ -10,7 +10,7 @@ async function fetchCourses() {
     const data = await response.json();
     container.textContent = "";
 
-    courses.forEach((courses) => {
+    data.forEach((course) => {
         const courseCard = createCourseCard(course);
     });
 }

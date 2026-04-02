@@ -1,6 +1,7 @@
-<script type="module" src="{{ asset('js/courses/create-course.js') }}"></script>
 @extends('layouts.teacher')
 @section('content')
+
+<script type="module" src="{{ asset('js/courses/create-course.js') }}" defer></script>
     <div class="w-full flex justify-center px-6">
         <form id="courseForm" class="bg-white w-1/2 p-8 rounded-3xl border border-slate-200 shadow-sm space-y-5">
             <div>

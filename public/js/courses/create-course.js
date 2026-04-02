@@ -1,5 +1,3 @@
-import { token } from "../auth/get-token.js";
-
 async function createCourse(e) {
     e.preventDefault();
     const request = new FormData(form);

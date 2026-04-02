@@ -1,12 +1,10 @@
+const token = localStorage.getItem("token");
+if (!token) {
+    console.error("No token, redirecting to login");
+    window.location.replace("/login");
+}
 //getting user info function
 async function user() {
-    const token = localStorage.getItem("token");
-    if (!token) {
-        console.error("No token, redirecting to login");
-        window.location.href = "/login";
-        return;
-    }
-
     try {
         const response = await fetch("/api/v1/user", {
             headers: {
@@ -20,18 +18,13 @@ async function user() {
             return;
         }
 
-        const user = await response.json();
+        const userData = await response.json();
         const name = document.getElementById("username");
 
-        name.textContent = user.nom;
+        name.textContent = userData.nom;
     } catch (err) {
         console.error("Network or CORS error:", err);
     }
 }
 
-//logout
-function logout() {
-    localStorage.removeItem("token");
-    window.location.href = "/login";
-}
 user();
