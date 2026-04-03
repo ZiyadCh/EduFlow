@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edu Flow | Teacher Panel</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module" src="{{ asset('js/auth/user.js') }}" defer></script>
+    @vite(['resources/css/app.css','resources/js/courses/teachers-courses.js','resources/js/auth/user.js'])
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
