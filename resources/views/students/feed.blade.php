@@ -1,7 +1,6 @@
 @extends('layouts.student')
 
 @section('content')
-    @vite(['resources/css/app.css','resources/js/courses/show-courses.js','resources/js/auth/user.js','resources/js/courses/search.js'])
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="mb-10 text-center md:text-left">

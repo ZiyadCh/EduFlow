@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduPlatform Mockup</title>
-    @vite(['resources/css/app.css','resources/js/courses/show-courses.js','resources/js/auth/user.js','resources/js/courses/search.js'])
+    @vite(['resources/css/app.css','resources/js/auth/user.js','resources/js/courses/search.js'])
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
@@ -16,13 +16,28 @@
 
             <div class="flex items-center space-x-8 shrink-0">
                 <div class="text-xl font-extrabold text-blue-600 tracking-tight italic">Edu Flow</div>
-                <div class="hidden lg:flex space-x-4">
-                        <a href="feed" class="text-slate-500 hover:text-blue-600 px-1 pt-1 text-sm transition">Home</a>
-                        <a href="courses" class="text-blue-600 font-semibold border-b-2 border-blue-600 px-1 pt-1 text-sm">Coures</a>
-                        <a href="my-courses" class="text-slate-500 hover:text-blue-600 px-1 pt-1 text-sm transition">Mes Coures</a>
-                        <a href="saved" class="text-slate-500 hover:text-blue-600 px-1 pt-1 text-sm transition">Saved</a>
-                </div>
-            </div>
+<div class="hidden lg:flex space-x-4">
+    <a href="/feed"
+       class="{{ request()->is('feed') ? 'text-blue-600 font-semibold border-b-2 border-blue-600' : 'text-slate-500 hover:text-blue-600' }} px-1 pt-1 text-sm transition">
+       Home
+    </a>
+
+    <a href="/courses"
+       class="{{ request()->is('courses') ? 'text-blue-600 font-semibold border-b-2 border-blue-600' : 'text-slate-500 hover:text-blue-600' }} px-1 pt-1 text-sm transition">
+       Courses
+    </a>
+
+    <a href="/my-courses"
+       class="{{ request()->is('my-courses') ? 'text-blue-600 font-semibold border-b-2 border-blue-600' : 'text-slate-500 hover:text-blue-600' }} px-1 pt-1 text-sm transition">
+       Mes Coures
+    </a>
+
+    <a href="/saved"
+       class="{{ request()->is('saved') ? 'text-blue-600 font-semibold border-b-2 border-blue-600' : 'text-slate-500 hover:text-blue-600' }} px-1 pt-1 text-sm transition">
+       Saved
+    </a>
+</div>
+                           </div>
    <div class="flex-1 max-w-md hidden sm:block">
                 <div class="relative flex">
                     <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">

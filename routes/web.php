@@ -15,6 +15,10 @@ Route::get('/courses', function () {
     return view('students.courses');
 });
 
+Route::get('/feed', function () {
+    return view('students.feed');
+});
+
 Route::get('/teacher/dashboard', function () {
     return view('teacher.courses');
 });
