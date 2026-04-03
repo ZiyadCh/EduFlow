@@ -1,7 +1,7 @@
 @extends('layouts.teacher')
 @section('content')
 
-<script type="module" src="{{ asset('js/courses/create-course.js') }}" defer></script>
+    @vite('resources/js/courses/create-course.js')
 
     <div class="w-full flex justify-center px-4 py-8 sm:px-6 lg:px-8">
 
